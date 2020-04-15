@@ -1,5 +1,12 @@
 {"_id":"id1","name":"Caio","age":"27","nationality":"Brasileiro"}
 {"_id":"id2","name":"Anderson","age":"32","nationality":"Japonês"}
 {"_id":"id3","name":"Felipe","age":"40","nationality":"Americano"}
-{"_id":"id1","name":"testando","age":"27","nationality":"Brasileiro"}
-{"_id":"id1","name":"Caio","age":"27","nationality":"Brasileiro"}
+{"name":"Fulano","age":"33","nationality":"Alemão","_id":"KgFhf9ihA3o7PCEi"}
+{"name":"Outro Fulano","age":"34","nationality":"Australiano","_id":"1rAD3l6LoXrVHETT"}
+{"$$deleted":true,"_id":"1rAD3l6LoXrVHETT"}
+{"$$deleted":true,"_id":"KgFhf9ihA3o7PCEi"}
+{"$$deleted":true,"_id":"id1"}
+{"$$deleted":true,"_id":"id2"}
+{"$$deleted":true,"_id":"id3"}
+{"name":"Alo","age":"12","nationality":"Brasidasd","_id":"RL45s4HfYSzaLmqe"}
+{"$$deleted":true,"_id":"RL45s4HfYSzaLmqe"}

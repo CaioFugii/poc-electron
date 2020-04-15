@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt as farTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faTrashAlt as farTrashAlt, faEdit, faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 import './App.css';
 
 import { eventEmitter } from './events/index'
@@ -11,6 +11,8 @@ function App() {
   const [users, setUsers] = useState()
   const [user, setUser] = useState()
   const [modal, setModal] = useState(false)
+  const [modalCreate, setModalCreate] = useState(false)
+
 
   const handleDelete = (id) => {
     eventEmitter.send('delete-user', {_id: id})
@@ -20,12 +22,24 @@ function App() {
     eventEmitter.send('put-user', {_id: newUser._id}, newUser)
   }
 
+  const handleCreate = (newUser) => {
+    eventEmitter.send('post-user', newUser)
+  }
+
   const closeModal = () => {
     setModal(false)
   }
   const openModal = (user) => {
     setUser(user)
     setModal(true)
+  }
+
+  const closeModalCreate = () => {
+    setModalCreate(false)
+  }
+
+  const openModalCreate = () => {
+    setModalCreate(true)
   }
 
   const handleChange = (e) => {
@@ -46,7 +60,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>React Electron Boilerplate</p>
+      <p>REACT + ELECTRON POC</p>
+        <p>New User  <FontAwesomeIcon
+          icon={faPlusSquare}
+          onClick={() => {
+          openModalCreate()
+          }}/></p>
+       
           <table className="default-table">
             <thead>
               <tr>
@@ -107,6 +127,29 @@ function App() {
                   <input type="number" name='age' min="1" max="99" step='1' onChange={(e) =>handleChange(e)} defaultValue={user.age}/><br/>
                   <label className='text'>Nacionalidade:</label>
                   <input type="text" name='nationality' onChange={(e) =>handleChange(e)} defaultValue={user.nationality} /><br/>
+                  <br/>
+                </div>
+              </Modal>
+            ) : null}
+          </div>
+          <div>
+            {modalCreate ? (
+              <Modal
+                buttonText="Create"
+                onSubmit={() => {
+                  handleCreate(user)
+                  closeModalCreate();
+                }}
+                close={() => closeModalCreate()}
+              >
+                <div>
+                  <legend className='text'>Formulário</legend>
+                  <label className='text'>Nome:</label>
+                  <input type="text" name='name' onChange={(e) => handleChange(e)} /><br/>
+                  <label className='text'>Idade:</label>
+                  <input type="number" name='age' min="1" max="99" step='1' onChange={(e) =>handleChange(e)} /><br/>
+                  <label className='text'>Nacionalidade:</label>
+                  <input type="text" name='nationality' onChange={(e) =>handleChange(e)} /><br/>
                   <br/>
                 </div>
               </Modal>
